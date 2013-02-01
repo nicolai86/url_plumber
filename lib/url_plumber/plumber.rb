@@ -17,7 +17,7 @@ module UrlPlumber
 
       keys[0..-2].each do |part|
         scopes << scope
-        scope = scope.fetch(part) { Hash.new }
+        scope = scope.fetch(part) { HashWithIndifferentAccess.new }
       end
 
       if value.nil?
@@ -37,9 +37,13 @@ module UrlPlumber
 
     private
     def dup hash
-      new_hash = ::Hash.new
+      new_hash = ::HashWithIndifferentAccess.new
       hash.each do |key, value|
-        new_hash[key] = value
+        if value.is_a?(Hash)
+          new_hash[key] = dup(value)
+        else
+          new_hash[key] = value
+        end
       end
       return new_hash
     end

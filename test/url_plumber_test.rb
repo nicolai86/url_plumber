@@ -20,9 +20,9 @@ class UrlPlumberTest < ActiveSupport::TestCase
       }
     })
     expected_hash = {
-      a: {
-        b: {
-          c: 4
+      "a" => {
+        "b" => {
+          "c" => 4
         }
       }
     }
@@ -39,7 +39,7 @@ class UrlPlumberTest < ActiveSupport::TestCase
   test 'changes value of hash' do
     hash = { foo: 42 }
     plumber = ::UrlPlumber::Plumber.new(hash)
-    assert_equal({ foo: 12 }, plumber.plumb(:foo, 12))
+    assert_equal({ "foo" => 12 }, plumber.plumb(:foo, 12))
   end
 
   test 'changes value of nested hash' do
@@ -52,10 +52,10 @@ class UrlPlumberTest < ActiveSupport::TestCase
       }
     })
     expected_hash = {
-      a: {
-        b: {
-          x: 4,
-          c: 12
+      "a" => {
+        "b" => {
+          "x" => 4,
+          "c" => 12
         }
       }
     }
