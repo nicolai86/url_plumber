@@ -53,7 +53,3 @@ Mix and match your plumber got you covert :)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-# TODO
-
-2. release it as a gem
