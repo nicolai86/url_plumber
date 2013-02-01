@@ -1,7 +1,5 @@
 # UrlPlumber
 
-`UrlPlumber` helps you change individual url parameters while keeping everything else as is.
-
 Ever had a table with multiple filter-options and the need to change one filter while keeping another active?
 
 Using `UrlPlumber` you can change individual parts of your url parameters while not touching anything else.
@@ -26,7 +24,7 @@ It's best to add a helper to your application to use `UrlPlumber` like this:
 
 ```
 # url_plumber.rb
-module UrlPlumber
+module PlumberHelper
   def plumb(key_path, value = nil)
     return url_for (@plumber ||= ::UrlPlumber::Plumber.new(params)).plumb(key_path, value)
   end
