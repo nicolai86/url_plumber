@@ -1,3 +1,5 @@
+require 'active_support/hash_with_indifferent_access'
+
 module UrlPlumber
   class Plumber
     attr_accessor :params
@@ -7,13 +9,13 @@ module UrlPlumber
     end
 
     def plumb key_path, value = nil
-      key_path = key_path.split('.')
-      key = key_path[-1]
+      keys = key_path.to_s.split('.').map(&:to_sym)
+      key = keys[-1].to_sym
 
       scopes = []
       scope = dup(params)
 
-      key_path[0..-2].each do |part|
+      keys[0..-2].each do |part|
         scopes << scope
         scope = scope.fetch(part) { Hash.new }
       end
@@ -24,7 +26,7 @@ module UrlPlumber
         scope[key] = value
       end
 
-      key_path[0..-2].reverse.each_with_index do |part|
+      keys[0..-2].reverse.each_with_index do |part|
         parent = scopes.pop
         parent[part] = scope
         scope = parent
@@ -35,9 +37,9 @@ module UrlPlumber
 
     private
     def dup hash
-      new_hash = HashWithIndifferentAccess.new
+      new_hash = ::Hash.new
       hash.each do |key, value|
-        new_hash[key] = value.dup
+        new_hash[key] = value
       end
       return new_hash
     end
