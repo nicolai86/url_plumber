@@ -26,7 +26,7 @@ module UrlPlumber
         scope[key] = value
       end
 
-      keys[0..-2].reverse.each_with_index do |part|
+      keys[0..-2].reverse.each do |part|
         parent = scopes.pop
         parent[part] = scope
         scope = parent
@@ -36,6 +36,8 @@ module UrlPlumber
     end
 
     private
+    # params.dup returns the original request parameters in Ruby on Rails
+    # so we need to get our hands dirty to create an actual copy of the params
     def dup hash
       new_hash = ::HashWithIndifferentAccess.new
       hash.each do |key, value|
