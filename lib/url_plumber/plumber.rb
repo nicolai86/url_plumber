@@ -10,7 +10,7 @@ module UrlPlumber
 
     def plumb key_path, value = nil
       keys = key_path.to_s.split('.').map(&:to_sym)
-      key = keys[-1].to_sym
+      key = keys[-1]
 
       scopes = []
       scope = dup(params)
