@@ -8,12 +8,19 @@ module UrlPlumber
       @params = dup(params)
     end
 
-    def plumb key_path, value = nil
+    def plumb attributes = {}
+      scope = dup(params)
+      attributes.each do |key, value|
+        scope = update_scope scope, key, value
+      end
+      scope
+    end
+
+    def update_scope scope, key_path, value = nil
       keys = key_path.to_s.split('.').map(&:to_sym)
       key = keys[-1]
 
       scopes = []
-      scope = dup(params)
 
       keys[0..-2].each do |part|
         scopes << scope
