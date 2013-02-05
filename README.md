@@ -26,7 +26,7 @@ It's best to add a helper to your application to use `UrlPlumber` like this:
 # url_plumber.rb
 module PlumberHelper
   def plumb(key_path, value = nil)
-    return url_for (@plumber ||= ::UrlPlumber::Plumber.new(params)).plumb(key_path, value)
+    return url_for (@plumber ||= ::UrlPlumber::Plumber.new(params)).plumb(key_path => value)
   end
 end
 ```
