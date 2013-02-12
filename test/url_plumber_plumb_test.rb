@@ -4,7 +4,7 @@ require "active_support/inflector"
 
 require "url_plumber"
 
-class UrlPlumberTest < ActiveSupport::TestCase
+class UrlPlumberPlumbTest < ActiveSupport::TestCase
   test 'removes key from hash' do
     plumber = ::UrlPlumber::Plumber.new({ "foo" => 42 })
     assert_empty plumber.plumb("foo" => nil)

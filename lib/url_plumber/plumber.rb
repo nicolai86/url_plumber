@@ -8,6 +8,22 @@ module UrlPlumber
       @params = dup(params)
     end
 
+    def extract key_path
+      keys = key_path.to_s.split('.').map(&:to_sym)
+      key = keys[-1]
+
+      scope = params
+      keys[0..-2].each do |part|
+        scope = scope.fetch(part) { HashWithIndifferentAccess.new }
+      end
+
+      if scope.has_key?(key)
+        scope[key]
+      else
+        nil
+      end
+    end
+
     def plumb attributes = {}
       scope = dup(params)
       attributes.each do |key, value|
