@@ -20,18 +20,22 @@ Or install it yourself as:
 
 ## Usage
 
-It's best to add a helper to your application to use `UrlPlumber` like this:
+`UrlPlumber` has two main functions: changing values inside a hash and reading values stored inside of hash objects.
+
+#### changing url parameters
+
+The easiest way to get start is somewhere along these lines:
 
 ```
-# url_plumber.rb
-module PlumberHelper
+# url_plumber_helper.rb
+module UrlPlumberHelper
   def plumb(key_path, value = nil)
     return url_for (@plumber ||= ::UrlPlumber::Plumber.new(params)).plumb(key_path => value)
   end
 end
 ```
 
-Then, in your view, you can use it like this:
+You can use it like this:
 
 ```
 # some_view.haml
@@ -42,6 +46,25 @@ Then, in your view, you can use it like this:
 = link_to 'Clear Option B', plumb('filter.option_b')
 = link_to 'Option B 1', plumb('filter.option_b', 1)
 = link_to 'Option B 2', plumb('filter.option_b', 2)
+```
+
+#### reading url parameters
+
+```
+# url_plumber_helper.rb
+module UrlPlumberHelper
+  def url_inquirer(key_path)
+    return ::ActiveSupport::StringInquirer.new(@plumber ||= ::UrlPlumber::Plumber.new(params)).extract(key_path)
+  end
+end
+```
+
+You can use it like this:
+
+```
+# some_view.haml
+- unless url_inquirer("filter.free_text").blank?
+  = link_to 'clear search', root_path
 ```
 
 Mix and match your plumber got you covert :)
