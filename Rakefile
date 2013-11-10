@@ -1,15 +1,13 @@
-require 'bundler'
+require 'bundler/setup'
+require "bundler/gem_tasks"
+Bundler::GemHelper.install_tasks
+
 require 'rake/testtask'
-
-Bundler.require
-
-Rake::TestTask.new do |test|
-  if ::RUBY_VERSION < '1.9'
-    test.test_files = %w(test/url_plumber_test.rb)
-  else
-    test.test_files = FileList['test/*_test.rb']
-  end
-  # test.verbose = true
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
 end
 
 task :default => :test
