@@ -13,9 +13,9 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/nicolai86/url_plumber"
   gem.license       = "MIT"
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files         = Dir["{app,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.test_files    = Dir["test/**/*"]
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'activesupport', '>= 3.0.0'
