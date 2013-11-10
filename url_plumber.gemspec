@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Raphael Randschau"]
   gem.email         = ["nicolai86@me.com"]
   gem.description   = %q{modify parts of a hash using a key_path}
-  gem.summary       = %q{modify parts of a hash using a key_path}
+  gem.summary       = %q{modify parts of a hash using a key_path. Works with Rails and Ruby}
   gem.homepage      = "https://github.com/nicolai86/url_plumber"
   gem.license       = "MIT"
 
