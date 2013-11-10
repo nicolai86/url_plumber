@@ -1,5 +1,8 @@
 # UrlPlumber
 
+[![Gem Version](https://badge.fury.io/rb/url_plumber.png)](http://badge.fury.io/rb/url_plumber)
+[![Build Status](https://travis-ci.org/nicolai86/url_plumber.png)](https://travis-ci.org/nicolai86/url_plumber)
+
 Ever had a table with multiple filter-options and the need to change one filter while keeping another active?
 
 Using `UrlPlumber` you can change individual parts of your url parameters while not touching anything else.
