@@ -18,8 +18,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = Dir["test/**/*"]
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'activesupport', '>= 3.0.0'
-  gem.add_development_dependency 'rake', '~> 10.0.3'
+  gem.add_dependency 'activesupport'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency "minitest"
 
   # signing key and certificate chain
   # gem.signing_key = 'gem-private_key.pem'

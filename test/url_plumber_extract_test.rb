@@ -1,26 +1,22 @@
-require "test/unit"
-require "active_support/test_case"
-require "active_support/inflector"
+require "test_helper"
 
-require "url_plumber"
-
-class UrlPlumberExtractTest < ActiveSupport::TestCase
-  test 'returns nil for key_paths that do not match' do
+class UrlPlumberExtractTest < Minitest::Test
+  def test_returns_nil_for_key_paths_that_do_not_match
     plumber = ::UrlPlumber::Plumber.new({ "foo" => 42 })
     assert_nil plumber.extract("bar")
   end
 
-  test 'returns nil for nested, unknown key_paths' do
+  def test_returns_nil_for_nested_unknown_key_paths
     plumber = ::UrlPlumber::Plumber.new({ "foo" => { "bar" => 12 } })
     assert_nil plumber.extract("foo.x")
   end
 
-  test 'returns value for known key_paths' do
+  def test_returns_value_for_known_key_paths
     plumber = ::UrlPlumber::Plumber.new({ "foo" => 42 })
     assert_equal 42, plumber.extract("foo")
   end
 
-  test 'returns value for known nested key_paths' do
+  def test_returns_value_for_known_nested_key_paths
     plumber = ::UrlPlumber::Plumber.new({ "foo" => { "bar" => 12 } })
     assert_equal 12, plumber.extract("foo.bar")
   end

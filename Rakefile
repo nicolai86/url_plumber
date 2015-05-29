@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require "bundler/gem_tasks"
+require "rake/testtask"
 Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
